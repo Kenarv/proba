@@ -14,7 +14,7 @@ export const Main = () => {
   return (
     <div className="bg-red-400 w-full h-full">
       <div>
-        <p>cica</p>
+        <p>cicas</p>
       </div>
     </div>
   );
