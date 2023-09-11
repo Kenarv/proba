@@ -23,7 +23,11 @@ try {
   console.log(err);
 }
 
-app.get("/test", async (req, res) => {
+app.get("/cikkAdatLekerdez", async (req, res) => {
+  let jelSzam = req.body.jelSzam;
+
+  //tartalék RNR GR2.RNR = 3989094
+
   let result = await conn.execute(`SELECT 
 	GR1.MENG_4 AS "tervezett db"
 	,GR1.MENG_5 AS "jelentett szám"
@@ -36,7 +40,7 @@ FROM RELDB GR1
 WHERE 
 GR1.ANR = (SELECT GR2.ANR 
  				FROM RELDB GR2
- 				WHERE GR2.RNR = 3989094)
+ 				WHERE GR2.RNR = ${jelSzam})
 AND GR1.SAINT = 10`);
 
   res.json(result.rows);
