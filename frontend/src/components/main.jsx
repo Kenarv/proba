@@ -9,7 +9,7 @@ export const Main = () => {
   console.log(showResult);
 
   return (
-    <div className="flex flex-col gap-2 w-[390px] md:w-[800px] mx-auto form-animation p-20 bg-gradient-to-r from-sky-300/50 via-sky-600/50 to-sky-500/50 rounded-xl shadow-2xl">
+    <div className="flex flex-col gap-2 w-[250px] md:w-[400px] mx-auto form-animation p-20 bg-gradient-to-r items-center from-sky-300/50 via-sky-600/50 to-sky-500/50 rounded-xl shadow-2xl">
       <input
         name="barCode"
         id="barCode"
@@ -27,15 +27,35 @@ export const Main = () => {
       />
 
       {showResult && (
-        <div>
-          <p>tervezett darab:{cikk[0].tervezettDB}</p>
-          <p>jelentett darab:{cikk[0].jelentettDB}</p>
-          <p>kihozatalai mutato:{cikk[0].kihozataliMutato}</p>
-          <p>jelszám: {cikk[0].jelSzam}</p>
-          <p>Gyártási rendelési szám: {cikk[0].gyRsz}</p>
-          <p>leiras: {cikk[0].leiras}</p>
-          <p>tf: {cikk[0].tf}</p>
-          <p></p>
+        <div className="flex flex-col gap-3 rounded-lg p-6 text-center font bg-sky-500">
+          <div className="bg-sky-600 p-3 rounded-sm">
+            <h1>tervezett darab: </h1>
+            <p>{cikk[0].tervezettDB}</p>
+          </div>
+          <div className="bg-sky-600 p-3 rounded-sm">
+            <h1>jelentett darab:</h1>
+            <p>{cikk[0].jelentettDB}</p>
+          </div>
+          <div className="bg-sky-600 p-3 rounded-sm">
+            <h1>kihozatalai mutato:</h1>
+            <p>{cikk[0].kihozataliMutato}</p>
+          </div>
+          <div className="bg-sky-600 p-3 rounded-sm">
+            <h1>jelszám:</h1>
+            <p>{cikk[0].jelSzam}</p>
+          </div>
+          <div className="bg-sky-600 p-3 rounded-sm">
+            <h1>Gyártási rendelési szám:</h1>
+            <p>{cikk[0].gyRsz}</p>
+          </div>
+          <div className="bg-sky-600 p-3 rounded-sm">
+            <h1>leiras:</h1>
+            <p>{cikk[0].leiras}</p>
+          </div>
+          <div className="bg-sky-600 p-3 rounded-sm">
+            <h1>tf:</h1>
+            <p>{cikk[0].tf}</p>
+          </div>
         </div>
       )}
     </div>

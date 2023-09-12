@@ -1,7 +1,6 @@
 import axios from "axios";
 
 const getData = async (sendToBackend, setCikk, setShowResult) => {
-  console.log("cikkadat elküldve");
   try {
     await axios
       .post("http://localhost:30000/cikkAdatLekerdez", sendToBackend)
