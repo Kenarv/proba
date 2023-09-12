@@ -1,12 +1,12 @@
 import React from "react";
 import getData from "../util/getData";
-import { useState, useEffect } from "react";
-import { QrReader } from "react-qr-reader";
+import { useState } from "react";
 
 export const Main = () => {
   const [cikk, setCikk] = useState([]);
-  const [showResult, setShowResult] = useState(false);
+  const [showResult, setShowResult] = useState(Boolean);
   const [barCode, setBarCode] = useState("");
+  console.log(showResult);
 
   return (
     <div className="flex flex-col gap-2 w-[390px] md:w-[800px] mx-auto form-animation p-20 bg-gradient-to-r from-sky-300/50 via-sky-600/50 to-sky-500/50 rounded-xl shadow-2xl">
@@ -25,6 +25,7 @@ export const Main = () => {
         }
         className="bg-sky-400 w-20"
       />
+
       {showResult && (
         <div>
           <p>tervezett darab:{cikk[0].tervezettDB}</p>
