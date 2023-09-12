@@ -23,17 +23,21 @@ try {
   console.log(err);
 }
 
-app.get("/cikkAdatLekerdez", async (req, res) => {
+app.post("/cikkAdatLekerdez", async (req, res) => {
+  console.log("ittjartam");
+
   let jelSzam = req.body.jelSzam;
+
+  console.log(jelSzam);
 
   //tartalék RNR GR2.RNR = 3989094
 
   let result = await conn.execute(`SELECT 
-	GR1.MENG_4 AS "tervezett db"
-	,GR1.MENG_5 AS "jelentett szám"
-	,GR1.LPROZ AS "kihozatali mutato"
-	,GR1.RNR AS "jelentési szám"
-	,GR1.ANR AS "gyártási rendelési szám"
+	GR1.MENG_4 AS "tervezettDB"
+	,GR1.MENG_5 AS "jelentettDB"
+	,GR1.LPROZ AS "kihozataliMutato"
+	,GR1.RNR AS "jelSzam"
+	,GR1.ANR AS "gyRsz"
 	,GR1.KTXT AS "leiras"
 	,GR1.SAINT AS "tf" 
 FROM RELDB GR1
@@ -43,7 +47,7 @@ GR1.ANR = (SELECT GR2.ANR
  				WHERE GR2.RNR = ${jelSzam})
 AND GR1.SAINT = 10`);
 
-  res.json(result.rows);
+  res.json(result);
 });
 
 app.listen(30000);

@@ -1,23 +1,18 @@
 import axios from "axios";
 
-const getData = async (setCikkek, setCikk) => {
-  // ide kell mark magyarazat hogy miért van két setter és mit kéne berakni hogy kapja a vonalkod atatot es adja a cikkAdatokat
+const getData = async (sendToBackend, setCikk, setShowResult) => {
+  //if (sendToBackend.mennyiseg > 0) {
+  console.log("cikkadat elküldve");
   try {
-    const currentData = await axios.get(
-      "http://localhost:30000/cikkAdatLekerdez"
-    );
-    setCikkek(currentData.data);
-    let temp = [];
+    await axios
+      .post("http://localhost:30000/cikkAdatLekerdez", sendToBackend)
+      .then((res) => setCikk(res.data.rows))
+      .then(() => setShowResult(true))
+      .catch((err) => console.log(err));
 
-    for (let elem of currentData.data) {
-      if (!temp.includes(elem.cikk)) {
-        temp.push(elem.cikk);
-      }
-    }
-    setCikk(temp);
+    console.log("cikkadat elküldve");
   } catch (error) {
-    alert("nem sikerült adatot lekérnem az adatbázistól");
+    alert("nem sikerült, próbáld újra később");
   }
 };
-
 export default getData;

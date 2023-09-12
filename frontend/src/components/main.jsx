@@ -4,48 +4,39 @@ import { useState, useEffect } from "react";
 import { QrReader } from "react-qr-reader";
 
 export const Main = () => {
-  const [cikkAdat, setCikkAdat] = useState([]);
-  // const [cikkek, setCikkek] = useState([]);
-  // const [newMove, setNewMove] = useState(false);
-  const [result, setResult] = useState("");
+  const [cikk, setCikk] = useState([]);
+  const [showResult, setShowResult] = useState(false);
+  const [barCode, setBarCode] = useState("");
 
-  const handleScan = (data) => {
-    if (data) {
-      setResult(data);
-    }
-  };
-
-  const handleError = (err) => {
-    console.error(err);
-  };
-
-  // useEffect(() => {
-  //   getData(setCikkek, setCikk);
-  // }, []);
-  console.log(cikkAdat);
   return (
     <div className="flex flex-col gap-2 w-[390px] md:w-[800px] mx-auto form-animation p-20 bg-gradient-to-r from-sky-300/50 via-sky-600/50 to-sky-500/50 rounded-xl shadow-2xl">
-      <div className="bg-sky-600">
-        <QrReader
-          delay={300}
-          onError={handleError}
-          onScan={handleScan}
-          style={{ width: "50%" }}
-        />
-      </div>
       <input
-        type="text"
         name="barCode"
         id="barCode"
         className="bg-slate-200"
-        value={result}
+        value={barCode}
+        onChange={(event) => setBarCode(event.target.value)}
       />
       <input
         type="button"
         value="keres"
-        onClick={() => ""}
+        onClick={() =>
+          getData({ jelSzam: parseInt(barCode, 10) }, setCikk, setShowResult)
+        }
         className="bg-sky-400 w-20"
       />
+      {showResult && (
+        <div>
+          <p>tervezett darab:{cikk[0].tervezettDB}</p>
+          <p>jelentett darab:{cikk[0].jelentettDB}</p>
+          <p>kihozatalai mutato:{cikk[0].kihozataliMutato}</p>
+          <p>jelszám: {cikk[0].jelSzam}</p>
+          <p>Gyártási rendelési szám: {cikk[0].gyRsz}</p>
+          <p>leiras: {cikk[0].leiras}</p>
+          <p>tf: {cikk[0].tf}</p>
+          <p></p>
+        </div>
+      )}
     </div>
   );
 };
