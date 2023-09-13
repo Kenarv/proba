@@ -24,11 +24,11 @@ try {
 }
 
 app.post("/cikkAdatLekerdez", async (req, res) => {
-  console.log("ittjartam");
+  //console.log("ittjartam");
 
   let jelSzam = req.body.jelSzam;
 
-  console.log(jelSzam);
+  console.log("lekért jelszám: ", jelSzam);
 
   //tartalék RNR GR2.RNR = 3989094
 
@@ -37,6 +37,7 @@ app.post("/cikkAdatLekerdez", async (req, res) => {
 	,GR1.MENG_5 AS "jelentettDB"
 	,GR1.LPROZ AS "kihozataliMutato"
 	,GR1.RNR AS "jelSzam"
+  ,GR1.MNR AS "cikkszam"
 	,GR1.ANR AS "gyRsz"
 	,GR1.KTXT AS "leiras"
 	,GR1.SAINT AS "tf" 
